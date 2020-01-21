@@ -16,12 +16,12 @@ import UIKit
 //: e. Use a `String?` for the Terminal, since it may not be set yet (i.e.: waiting to arrive on time)
 //:
 //: f. Use a class to represent a `DepartureBoard` with a list of departure flights, and the current airport
-enum FlightStatus {
+enum FlightStatus: String {
     case enRoute
-    case enRouteOnTime
-    case enRouteDelayed
-    case landedDelayed
-    case landedOntime
+    case enRouteOnTime = "enRoute - on time"
+    case enRouteDelayed = "enRoute - delayed"
+    case landedDelayed = "landed - delayed"
+    case landedOntime = "landed - on time"
     case delayed
     case canceled
     case diverted
@@ -91,9 +91,12 @@ sanFranciscoDepartureBoard.flights.append(sanFranciscoToLosAngelesFlight)
 //: c. Make your `FlightStatus` enum conform to `String` so you can print the `rawValue` String values from the `enum`. See the [enum documentation](https://docs.swift.org/swift-book/LanguageGuide/Enumerations.html).
 //:
 //: d. Print out the current DepartureBoard you created using the function
-
-
-
+func printDepartures(departureBoard: DepartureBoard) {
+    for flight in departureBoard.flights {
+        print(flight)
+    }
+}
+printDepartures(departureBoard: sanFranciscoDepartureBoard)
 
 //: ## 4. Make a second function to print print an empty string if the `departureTime` is nil
 //: a. Createa new `printDepartures2(departureBoard:)` or modify the previous function
