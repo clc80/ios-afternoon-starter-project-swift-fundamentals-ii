@@ -195,7 +195,18 @@ sanFranciscoDepartureBoard.flightStatus()
 func calculateAirfare(checkedBags: Int, distance: Int, travelers: Int) -> Double {
     let bagCost = Double(checkedBags * 25)
     let miles = Double(distance) * 0.10
-    return Double(travelers) * bagCost + miles
+    let cost = Double(travelers) * bagCost + miles
+    
+    //trying to use number formatter but it does it as a string not a double. Can't figure out how to convert to double
+    let currencyFormatter = NumberFormatter()
+    currencyFormatter.usesGroupingSeparator = true
+    currencyFormatter.numberStyle = .currency
+    currencyFormatter.locale = Locale(identifier: "en_US")
+
+    let airfare = currencyFormatter.string(from: NSNumber(value: cost))!
+    print(airfare)
+    
+    return cost
 }
 
 print(calculateAirfare(checkedBags: 2, distance: 300, travelers: 1))
